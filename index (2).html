@@ -1,0 +1,421 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ghana Today | News from Accra and across Ghana</title>
+<meta name="description" content="Ghana Today: politics, government, health, entertainment and trending news from Ghana.">
+
+<!-- ======== GOOGLE ADSENSE SITE CODE (paste your AdSense <script> here, inside <head>) ======== -->
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Merriweather:wght@700;900&display=swap" rel="stylesheet">
+
+<style>
+:root{
+  --red:#CE1126; --gold:#FCD116; --green:#006B3F;
+  --ink:#1A1A1A; --muted:#5f5f5f; --line:#e4e4e4; --soft:#f6f6f4; --white:#FFFFFF;
+  --serif:'Merriweather',Georgia,'Times New Roman',serif;
+  --sans:'Inter',system-ui,-apple-system,'Segoe UI',Roboto,Arial,sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--ink);background:var(--white);line-height:1.55}
+a{color:inherit;text-decoration:none}
+img{max-width:100%;display:block}
+button{font:inherit;cursor:pointer;border:0;background:none;color:inherit}
+:focus-visible{outline:3px solid var(--green);outline-offset:2px}
+.wrap{max-width:1180px;margin:0 auto;padding:0 16px}
+
+/* Top bar */
+.topbar{background:var(--ink);color:#ddd;font-size:.8rem}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;min-height:36px;gap:12px}
+.topbar .loc::before{content:"";display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--gold);margin:0 8px 0 12px}
+.social{display:flex;gap:8px}
+.social a{width:24px;height:24px;border-radius:50%;background:#333;display:grid;place-items:center;font-size:.68rem;font-weight:700;color:#fff}
+.social a:hover{background:var(--gold);color:var(--ink)}
+
+/* Logo + nav */
+.brand{padding:18px 0 12px;display:flex;justify-content:space-between;align-items:center}
+.logo{font-family:var(--serif);font-weight:900;font-size:clamp(1.8rem,5vw,2.9rem);letter-spacing:-.5px;line-height:1}
+.logo span{color:var(--red)}
+.logo small{display:block;font-family:var(--sans);font-size:.72rem;font-weight:500;color:var(--muted);letter-spacing:0;margin-top:6px}
+.flagbar{height:5px;background:linear-gradient(90deg,var(--red) 33.3%,var(--gold) 33.3% 66.6%,var(--green) 66.6%)}
+.burger{display:none;width:44px;height:44px;border:2px solid var(--ink);border-radius:6px;position:relative}
+.burger i,.burger i::before,.burger i::after{content:"";position:absolute;left:10px;right:10px;height:2px;background:var(--ink)}
+.burger i{top:19px}.burger i::before{left:0;right:0;top:-7px}.burger i::after{left:0;right:0;top:7px}
+nav{border-bottom:1px solid var(--line);background:var(--white);position:sticky;top:0;z-index:20}
+nav ul{list-style:none;display:flex;gap:4px}
+nav button{padding:14px 16px;font-weight:600;font-size:.95rem;border-bottom:4px solid transparent}
+nav button:hover{background:var(--soft)}
+nav button.active{background:var(--green);color:#fff;border-bottom-color:var(--gold)}
+
+/* Ticker */
+.ticker{background:var(--red);color:#fff;display:flex;align-items:stretch;overflow:hidden}
+.ticker b{background:var(--gold);color:var(--ink);padding:9px 16px;font-size:.85rem;white-space:nowrap;z-index:1}
+.ticker .track{overflow:hidden;flex:1;display:flex;align-items:center}
+.ticker .move{display:inline-flex;white-space:nowrap;animation:tick 55s linear infinite}
+.ticker:hover .move{animation-play-state:paused}
+.ticker .move span{padding:0 28px;font-size:.88rem}
+.ticker .move span::before{content:"";display:inline-block;width:6px;height:6px;background:var(--gold);margin-right:12px;vertical-align:middle}
+@keyframes tick{to{transform:translateX(-50%)}}
+@media (prefers-reduced-motion:reduce){.ticker .move{animation:none}.ticker .track{overflow-x:auto}}
+
+/* Ad slots */
+.ad{background:var(--soft);border:1px dashed #bbb;color:#888;display:grid;place-items:center;text-align:center;font-size:.78rem;margin:20px auto;max-width:100%;overflow:hidden}
+.ad-728{width:728px;height:90px}
+.ad-300{width:300px;height:250px;margin:0 auto 24px}
+.ad-inline{width:100%;min-height:120px}
+
+/* Tags */
+.tag{display:inline-block;font-size:.72rem;font-weight:700;color:#fff;padding:3px 9px;border-radius:3px}
+.t-Politics{background:var(--red)}
+.t-Government{background:var(--green)}
+.t-Entertainment{background:var(--gold);color:var(--ink)}
+.t-Health{background:#fff;color:var(--green);box-shadow:inset 0 0 0 2px var(--green)}
+.t-Trending{background:var(--ink)}
+.meta{font-size:.78rem;color:var(--muted)}
+
+/* Hero */
+.hero{display:grid;grid-template-columns:1.7fr 1fr;gap:24px;margin:8px 0 28px}
+.lead{position:relative;border-top:5px solid var(--red);cursor:pointer}
+.lead img{width:100%;aspect-ratio:16/10;object-fit:cover}
+.lead h2{font-family:var(--serif);font-size:clamp(1.5rem,3vw,2.15rem);line-height:1.22;margin:12px 0 8px}
+.lead p{color:#333;max-width:62ch}
+.tops{display:flex;flex-direction:column;border-top:5px solid var(--gold)}
+.top{display:grid;grid-template-columns:1fr 96px;gap:12px;padding:14px 0;border-bottom:1px solid var(--line);cursor:pointer}
+.top:last-child{border-bottom:0}
+.top h3{font-family:var(--serif);font-size:1rem;line-height:1.35;margin:6px 0 4px}
+.top img{width:96px;height:80px;object-fit:cover}
+.lead:hover h2,.top:hover h3,.card:hover h3,.rank li:hover a{text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:3px}
+
+/* Layout */
+.layout{display:grid;grid-template-columns:1fr 310px;gap:32px;align-items:start}
+.sechead{display:flex;align-items:center;gap:12px;font-family:var(--serif);font-size:1.3rem;margin-bottom:16px;border-bottom:2px solid var(--ink);padding-bottom:8px}
+.sechead::before{content:"";width:6px;height:24px;background:var(--green)}
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.card{cursor:pointer;display:flex;flex-direction:column}
+.card img{width:100%;aspect-ratio:3/2;object-fit:cover;margin-bottom:10px}
+.card h3{font-family:var(--serif);font-size:1.02rem;line-height:1.35;margin:8px 0 6px}
+.card p{font-size:.88rem;color:#444;margin-bottom:8px}
+.card .meta{margin-top:auto}
+.empty{padding:40px 0;color:var(--muted)}
+
+/* Sidebar */
+.box{border:1px solid var(--line);border-top:4px solid var(--gold);padding:16px;margin-bottom:24px}
+.box h3{font-family:var(--serif);font-size:1.1rem;margin-bottom:10px}
+.rank{list-style:none;counter-reset:r}
+.rank li{counter-increment:r;display:flex;gap:12px;padding:10px 0;border-bottom:1px solid var(--line);font-size:.92rem;font-weight:600;line-height:1.4}
+.rank li:last-child{border-bottom:0}
+.rank li::before{content:counter(r);font-family:var(--serif);font-weight:900;font-size:1.5rem;color:var(--red);min-width:24px;line-height:1.1}
+.news{border-top-color:var(--green);background:var(--soft)}
+.news p{font-size:.88rem;margin-bottom:10px;color:#444}
+.news input{width:100%;padding:11px;border:1px solid #bbb;border-radius:4px;font:inherit;margin-bottom:8px}
+.news button{width:100%;padding:11px;background:var(--red);color:#fff;font-weight:700;border-radius:4px}
+.news button:hover{background:#a50e1f}
+#nlMsg{font-size:.85rem;color:var(--green);font-weight:600;margin-top:8px}
+
+/* Reader */
+.reader{max-width:780px;margin:24px auto 40px}
+.back{background:var(--green);color:#fff;padding:10px 18px;border-radius:4px;font-weight:600;margin-bottom:20px}
+.back:hover{background:#00502f}
+.reader h1{font-family:var(--serif);font-size:clamp(1.6rem,4vw,2.5rem);line-height:1.2;margin:12px 0}
+.reader .by{padding:12px 0;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:18px;font-size:.88rem;color:var(--muted)}
+.reader .by strong{color:var(--ink)}
+.reader img{width:100%;aspect-ratio:16/9;object-fit:cover;margin-bottom:20px}
+.reader .body p{font-family:var(--serif);font-weight:400;font-size:1.06rem;line-height:1.85;margin-bottom:1.1em;max-width:68ch}
+.related{margin-top:32px}
+
+/* Footer */
+footer{background:var(--ink);color:#ccc;margin-top:40px;border-top:5px solid var(--gold)}
+footer .wrap{padding:28px 16px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:16px;align-items:center}
+footer .logo{color:#fff;font-size:1.5rem}
+footer ul{list-style:none;display:flex;flex-wrap:wrap;gap:8px 20px;font-size:.9rem}
+footer a:hover{color:var(--gold)}
+.copy{width:100%;border-top:1px solid #333;padding-top:16px;font-size:.8rem;color:#999}
+
+/* Responsive */
+@media (max-width:1000px){
+  .layout{grid-template-columns:1fr}
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .hero{grid-template-columns:1fr}
+}
+@media (max-width:760px){
+  .burger{display:block}
+  nav ul{display:none;flex-direction:column;gap:0;padding-bottom:8px}
+  nav ul.open{display:flex}
+  nav button{width:100%;text-align:left;border-bottom:1px solid var(--line);border-left:6px solid transparent}
+  nav button.active{border-left-color:var(--gold)}
+  .grid{grid-template-columns:1fr}
+  .topbar .loc{display:none}
+  .ad-728{width:100%;height:60px}
+}
+</style>
+</head>
+<body>
+
+<!-- TOP BAR: date is filled in automatically by JavaScript. Edit social links (href="#") here. -->
+<div class="topbar"><div class="wrap">
+  <div><span id="today"></span><span class="loc">Accra, Ghana</span></div>
+  <div class="social" aria-label="Social media">
+    <a href="#" aria-label="Facebook">f</a>
+    <a href="#" aria-label="X (Twitter)">X</a>
+    <a href="#" aria-label="Instagram">ig</a>
+    <a href="#" aria-label="YouTube">yt</a>
+  </div>
+</div></div>
+
+<header class="wrap">
+  <div class="brand">
+    <a class="logo" href="#" data-home>GHANA <span>TODAY</span><small>Independent news from Accra and across Ghana</small></a>
+    <button class="burger" id="burger" aria-label="Open menu" aria-expanded="false" aria-controls="menu"><i></i></button>
+  </div>
+</header>
+<div class="flagbar"></div>
+
+<nav aria-label="Main">
+  <div class="wrap">
+    <ul id="menu">
+      <li><button class="active" data-cat="Home">Home</button></li>
+      <li><button data-cat="Trending">Trending News</button></li>
+      <li><button data-cat="Politics">Politics</button></li>
+      <li><button data-cat="Government">Government</button></li>
+      <li><button data-cat="Entertainment">Entertainment</button></li>
+      <li><button data-cat="Health">Health</button></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- BREAKING NEWS TICKER: edit the TICKER list in the script at the bottom -->
+<div class="ticker" role="marquee" aria-label="Breaking news">
+  <b>BREAKING</b>
+  <div class="track"><div class="move" id="tickerMove"></div></div>
+</div>
+
+<main class="wrap">
+
+  <!-- GOOGLE ADSENSE SLOT: TOP LEADERBOARD 728x90 -->
+  <!-- Replace everything inside this div with your AdSense <ins> code -->
+  <div class="ad ad-728" id="adTop">Advertisement 728x90</div>
+
+  <!-- NEWS VIEW -->
+  <section id="newsView">
+    <div id="heroWrap"></div>
+    <div class="layout">
+      <div>
+        <h2 class="sechead" id="feedTitle">Latest news</h2>
+        <div class="grid" id="grid"></div>
+      </div>
+      <aside>
+        <div class="box">
+          <h3>Most read</h3>
+          <ol class="rank" id="rank"></ol>
+        </div>
+
+        <!-- GOOGLE ADSENSE SLOT: SIDEBAR SQUARE 300x250 -->
+        <!-- Replace everything inside this div with your AdSense <ins> code -->
+        <div class="ad ad-300" id="adSide">Advertisement 300x250</div>
+
+        <div class="box news">
+          <h3>Get the daily briefing</h3>
+          <p>The day's top Ghana stories in your inbox every morning.</p>
+          <!-- To make this work for real, connect it to Mailchimp, Brevo, Formspree, etc. -->
+          <form id="nlForm">
+            <input type="email" id="nlEmail" placeholder="Your email address" required aria-label="Email address">
+            <button type="submit">Subscribe</button>
+            <div id="nlMsg" role="status"></div>
+          </form>
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <!-- ARTICLE READER VIEW -->
+  <section id="readerView" class="reader" hidden></section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="logo" href="#" data-home>GHANA <span>TODAY</span></a>
+    <!-- Point these links to real pages (about.html, privacy.html ...). AdSense requires Privacy Policy, Contact and About pages. -->
+    <ul>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="contact.html">Contact</a></li>
+      <li><a href="privacy.html">Privacy Policy</a></li>
+      <li><a href="terms.html">Terms of Service</a></li>
+    </ul>
+    <p class="copy">&copy; <span id="yr"></span> Ghana Today. All rights reserved. Accra, Ghana. Sample stories on this page are placeholders: replace them with your own reporting.</p>
+  </div>
+</footer>
+
+<script>
+/* ===================== EDIT YOUR CONTENT HERE ===================== */
+
+/* Breaking news ticker lines */
+const TICKER = [
+  "Parliament to resume sitting next week with budget review on the agenda",
+  "Accra commuters urged to expect delays as road works continue on the Ring Road",
+  "Health service announces extended hours at regional clinics",
+  "Afrobeats showcase confirmed for Accra this December"
+];
+
+/* Articles. cat must be one of: Trending, Politics, Government, Entertainment, Health.
+   img: replace the picsum URL with your own image link. The seed value just picks a different photo.
+   body: each string is one paragraph in the full-article view.
+   The first 4 articles appear in the Home hero section (lead + 3 headlines). */
+const ARTICLES = [
+ {id:1,cat:"Politics",title:"Parliament opens debate on proposed electoral reforms",
+  summary:"Lawmakers from both sides of the House traded arguments on voter registration and the timetable for the next review.",
+  author:"Ama Boateng",time:"2 hours ago",img:"https://picsum.photos/seed/gt-parliament/1000/625",
+  body:["Parliament opened a lengthy debate on Tuesday over a package of proposed electoral reforms, with members split on how quickly changes to voter registration should take effect.","Supporters of the bill argue that a cleaner register would reduce disputes after polling day. Critics say the timetable is too tight and want wider consultation with civil society groups and traditional leaders.","The committee is expected to report back before the end of the month. This is placeholder text: replace it with your own reporting."]},
+ {id:2,cat:"Government",title:"New digital ID rollout expands to more districts",
+  summary:"Officials say registration centres will open in additional districts as the programme enters its next phase.",
+  author:"Kwame Mensah",time:"3 hours ago",img:"https://picsum.photos/seed/gt-digitalid/600/400",
+  body:["The next phase of the national digital identity programme will add registration centres in more districts, according to the agency running the project.","Residents are advised to bring existing identification and to check the official schedule for their area before travelling to a centre.","Placeholder article: edit this text in the ARTICLES list."]},
+ {id:3,cat:"Health",title:"Clinics extend hours to cut waiting times in Greater Accra",
+  summary:"A pilot scheme keeps selected health centres open into the evening to ease pressure on busy outpatient departments.",
+  author:"Dr. Efua Asante",time:"5 hours ago",img:"https://picsum.photos/seed/gt-clinic/600/400",
+  body:["Selected health centres across Greater Accra are testing longer opening hours in an effort to shorten queues at outpatient departments.","Health workers say the change will help patients who cannot attend during working hours. The pilot will be reviewed after three months.","Placeholder article: replace with your own story."]},
+ {id:4,cat:"Entertainment",title:"Afrobeats showcase set to light up Accra this December",
+  summary:"Organisers promise a line-up of homegrown artists, with a focus on rising talent from across the country.",
+  author:"Nana Yaa Owusu",time:"6 hours ago",img:"https://picsum.photos/seed/gt-afrobeats/600/400",
+  body:["Promoters have confirmed a large Afrobeats showcase in Accra for December, bringing together established names and newcomers on one stage.","Early ticket releases are planned, with a share of proceeds going to a youth music training fund.","Placeholder article: update the artists, venue and dates."]},
+ {id:5,cat:"Trending",title:"Why Accra’s street food scene is going viral online",
+  summary:"From waakye to kelewele, short videos from local vendors are drawing millions of views and new customers.",
+  author:"Kofi Adjei",time:"7 hours ago",img:"https://picsum.photos/seed/gt-streetfood/600/400",
+  body:["Short videos from Accra food vendors are racking up views, and sellers say the attention is turning into real sales.","Some stalls now post their opening times online, and a few have started taking orders by message.","Placeholder article: replace this with a real trending story."]},
+ {id:6,cat:"Politics",title:"Regional leaders call for faster delivery of local projects",
+  summary:"Assembly members say delays in funding releases are slowing roads, schools and market upgrades.",
+  author:"Yaw Darko",time:"9 hours ago",img:"https://picsum.photos/seed/gt-assembly/600/400",
+  body:["Local leaders meeting in the regional capital urged central government to release funds on schedule so that community projects can finish on time.","They pointed to unfinished roads and classroom blocks as examples of work held up by delayed payments.","Placeholder article: edit in the ARTICLES list."]},
+ {id:7,cat:"Government",title:"Ministry outlines plan to improve road safety ahead of festive season",
+  summary:"Extra patrols, public campaigns and vehicle checks are planned along major highways.",
+  author:"Abena Quaye",time:"10 hours ago",img:"https://picsum.photos/seed/gt-roads/600/400",
+  body:["Transport officials have outlined a road safety plan for the festive period, including more patrols on busy highways and spot checks on commercial vehicles.","Drivers are reminded to rest on long journeys and to keep to speed limits.","Placeholder article: replace with your own reporting."]},
+ {id:8,cat:"Health",title:"Simple habits to guard against malaria during the rainy season",
+  summary:"Health workers share practical steps households can take to reduce mosquito breeding and protect children.",
+  author:"Dr. Efua Asante",time:"12 hours ago",img:"https://picsum.photos/seed/gt-malaria/600/400",
+  body:["Clearing standing water, sleeping under treated nets and seeking early testing for fever remain the most effective household steps against malaria.","Parents should visit a health facility promptly if a child develops a high temperature rather than relying on home remedies.","Placeholder health feature: always check facts with a qualified medical source before publishing."]},
+ {id:9,cat:"Entertainment",title:"Highlife meets hip-hop on a new collaborative album",
+  summary:"Young producers are mixing classic guitar lines with modern beats, and listeners are taking notice.",
+  author:"Nana Yaa Owusu",time:"14 hours ago",img:"https://picsum.photos/seed/gt-highlife/600/400",
+  body:["A new collaborative project blends highlife guitar with hip-hop drums, introducing older sounds to a younger audience.","Critics have praised the production, while fans are already sharing favourite tracks online.","Placeholder article: change the title, names and details."]},
+ {id:10,cat:"Trending",title:"Tech hubs in Accra record rise in young founders",
+  summary:"Co-working spaces report growing numbers of students and graduates launching small businesses.",
+  author:"Kofi Adjei",time:"16 hours ago",img:"https://picsum.photos/seed/gt-techhub/600/400",
+  body:["Co-working spaces across Accra say more young people are launching start-ups, from delivery apps to farm-supply platforms.","Mentors advise newcomers to test ideas with real customers before seeking funding.","Placeholder article: replace with your own reporting."]},
+ {id:11,cat:"Trending",title:"Cedi in focus: what shoppers should know this week",
+  summary:"Traders and analysts discuss price movements and what they could mean for household budgets.",
+  author:"Yaw Darko",time:"18 hours ago",img:"https://picsum.photos/seed/gt-market/600/400",
+  body:["Market traders say price changes are being felt on imported goods, while local produce prices have been steadier.","Analysts advise households to compare prices across markets and plan larger purchases carefully.","Placeholder article: replace with verified figures and sources."]},
+ {id:12,cat:"Politics",title:"Civil society groups urge open budget hearings",
+  summary:"Advocacy groups say public access to budget discussions would build trust and improve accountability.",
+  author:"Ama Boateng",time:"20 hours ago",img:"https://picsum.photos/seed/gt-budget/600/400",
+  body:["A coalition of civil society organisations is calling for budget hearings to be open to the public and streamed online.","They argue that transparency helps citizens follow how public money is planned and spent.","Placeholder article: edit this text in the ARTICLES list."]}
+];
+
+/* Article IDs shown in the "Most read" sidebar list, in order */
+const MOST_READ = [1,5,3,4,8];
+
+/* Labels shown for each category tag */
+const LABEL = {Trending:"Trending",Politics:"Politics",Government:"Government",Entertainment:"Entertainment",Health:"Health"};
+const TITLES = {Home:"Latest news",Trending:"Trending news",Politics:"Politics",Government:"Government",Entertainment:"Entertainment",Health:"Health"};
+
+/* ===================== SITE LOGIC (no need to edit) ===================== */
+const $ = s => document.querySelector(s);
+let cat = "Home";
+const byId = id => ARTICLES.find(a => a.id === +id);
+const tag = c => `<span class="tag t-${c}">${LABEL[c]}</span>`;
+
+/* Header bits */
+$("#today").textContent = new Date().toLocaleDateString("en-GB",{weekday:"long",day:"numeric",month:"long",year:"numeric"});
+$("#yr").textContent = new Date().getFullYear();
+const tk = TICKER.map(t=>`<span>${t}</span>`).join("");
+$("#tickerMove").innerHTML = tk + tk; /* doubled so the loop is seamless */
+
+function card(a){
+  return `<article class="card" data-id="${a.id}" tabindex="0" role="link" aria-label="${a.title}">
+    <img src="${a.img}" alt="" loading="lazy" width="600" height="400">
+    ${tag(a.cat)}
+    <h3>${a.title}</h3>
+    <p>${a.summary}</p>
+    <div class="meta">${a.author} &bull; ${a.time}</div></article>`;
+}
+
+function renderNews(){
+  const list = cat==="Home" ? ARTICLES : ARTICLES.filter(a=>a.cat===cat);
+  /* Hero only on Home */
+  if(cat==="Home"){
+    const [l,...r] = ARTICLES, t = r.slice(0,3);
+    $("#heroWrap").innerHTML = `<div class="hero">
+      <article class="lead" data-id="${l.id}" tabindex="0" role="link">
+        <img src="${l.img}" alt="" width="1000" height="625">
+        <div style="padding-top:12px">${tag(l.cat)} <span class="meta">${l.author} &bull; ${l.time}</span></div>
+        <h2>${l.title}</h2><p>${l.summary}</p></article>
+      <div class="tops">${t.map(a=>`<article class="top" data-id="${a.id}" tabindex="0" role="link">
+        <div>${tag(a.cat)}<h3>${a.title}</h3><div class="meta">${a.time}</div></div>
+        <img src="${a.img}" alt="" loading="lazy" width="96" height="80"></article>`).join("")}</div></div>`;
+  } else $("#heroWrap").innerHTML = "";
+  $("#feedTitle").textContent = TITLES[cat];
+  $("#grid").innerHTML = list.length ? list.map(card).join("") : `<p class="empty">No stories in this section yet.</p>`;
+  $("#rank").innerHTML = MOST_READ.map(id=>`<li data-id="${id}" tabindex="0"><a href="#story-${id}">${byId(id).title}</a></li>`).join("");
+}
+
+function renderReader(a){
+  const more = ARTICLES.filter(x=>x.cat===a.cat && x.id!==a.id).slice(0,3);
+  const paras = a.body.map(p=>`<p>${p}</p>`);
+  /* GOOGLE ADSENSE SLOT: IN-ARTICLE (appears after the first paragraph). Replace the text inside the div below. */
+  const ad = `<!-- GOOGLE ADSENSE SLOT: IN-ARTICLE --><div class="ad ad-inline">Advertisement (in-article)</div>`;
+  paras.splice(1,0,ad);
+  $("#readerView").innerHTML = `
+    <button class="back" id="backBtn">&larr; Back to News</button>
+    ${tag(a.cat)}
+    <h1>${a.title}</h1>
+    <div class="by"><strong>${a.author}</strong> &bull; ${a.time} &bull; Ghana Today</div>
+    <img src="${a.img.replace(/\/\d+\/\d+$/,"/1200/675")}" alt="">
+    <div class="body">${paras.join("")}</div>
+    ${more.length?`<div class="related"><h2 class="sechead">More in ${LABEL[a.cat]}</h2><div class="grid">${more.map(card).join("")}</div></div>`:""}`;
+  $("#backBtn").onclick = () => { location.hash = ""; };
+}
+
+/* Routing: #story-ID shows the reader, empty hash shows the news feed */
+function route(){
+  const m = location.hash.match(/^#story-(\d+)$/), a = m && byId(m[1]);
+  $("#newsView").hidden = !!a; $("#readerView").hidden = !a;
+  if(a){ renderReader(a); document.title = a.title+" | Ghana Today"; window.scrollTo(0,0); }
+  else { renderNews(); document.title = "Ghana Today | News from Accra and across Ghana"; }
+}
+
+function openStory(el){ const c = el.closest("[data-id]"); if(c) location.hash = "story-"+c.dataset.id; }
+document.addEventListener("click", e => { if(e.target.closest("[data-id]") && !e.target.closest("a")) openStory(e.target); });
+document.addEventListener("keydown", e => { if(e.key==="Enter" && e.target.matches("[data-id]")) openStory(e.target); });
+
+/* Navigation tabs */
+document.querySelectorAll("nav button").forEach(b => b.addEventListener("click", () => {
+  cat = b.dataset.cat;
+  document.querySelectorAll("nav button").forEach(x=>x.classList.toggle("active", x===b));
+  $("#menu").classList.remove("open"); $("#burger").setAttribute("aria-expanded","false");
+  if(location.hash) location.hash = ""; else route();
+  window.scrollTo(0,0);
+}));
+document.querySelectorAll("[data-home]").forEach(l => l.addEventListener("click", e => {
+  e.preventDefault(); $("nav button[data-cat=Home]").click();
+}));
+
+/* Hamburger */
+$("#burger").addEventListener("click", () => {
+  const open = $("#menu").classList.toggle("open");
+  $("#burger").setAttribute("aria-expanded", open);
+});
+
+/* Newsletter (demo only: connect to a real email service) */
+$("#nlForm").addEventListener("submit", e => {
+  e.preventDefault(); $("#nlMsg").textContent = "Thanks for subscribing."; $("#nlForm").reset();
+});
+
+window.addEventListener("hashchange", route);
+route();
+</script>
+</body>
+</html>
